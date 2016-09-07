@@ -3,7 +3,7 @@ resource "aws_instance" "vpn_endpoint" {
     availability_zone = "${element(split(",", var.mod_azs), count.index)}"
     instance_type = "t2.micro"
     key_name = "${var.mod_aws_key_name}"
-    security_groups = [ "${aws_security_group.ovpn_access.id}" ]
+    vpc_security_groups_ids = [ "${aws_security_group.ovpn_access.id}" ]
     subnet_id     = "${element(split(",", var.mod_subnet_ids), count.index)}"
     count         = "1"
     associate_public_ip_address = true
