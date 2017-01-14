@@ -13,8 +13,9 @@ resource "aws_instance" "vpn_endpoint" {
         Name = "${var.mod_vpc_name} vpn endpoint"
     }
     connection {
+      type = "ssh"
       user = "ec2-user"
-      key_file = "${var.mod_aws_key_path}"
+      private_key = "${var.mod_aws_key_path}"
     }
     provisioner "remote-exec" {
       inline = [
